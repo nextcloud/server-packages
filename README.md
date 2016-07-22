@@ -4,7 +4,8 @@ Nextcloud
 This repository can be used to build a very basic RPM suited for CentOS 7.
 
 The package has been built following official Nextcloud documentation and
-guidelines about strong directory permissions. See: https://help.nextcloud.com
+guidelines about strong directory permissions. See: https://docs.nextcloud.org/
+and https://help.nextcloud.com if you get in trouble.
 
 After the installation, the administrator should take care of the following:
 
