@@ -24,6 +24,8 @@ The following dependencies are installed:
 * PHP packages for builtin apps (php-ldap, php-smbclient, php-imap)
 * PHP packages for MariaDB/MySQL connection
 
+You need to enable EPEL repository.
+
 SELinux
 -------
 
