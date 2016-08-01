@@ -13,7 +13,7 @@
 Summary: Nextcloud package
 Name: nextcloud
 Version: %nextcloud_version
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{nextcloud_version}.tar.bz2
 Source1: nextcloud.conf
@@ -77,3 +77,6 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
+* Mon Aug 01 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 9.0.53-2
+- First Nextcloud release - NethServer/dev#5055
+
