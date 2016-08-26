@@ -1,4 +1,4 @@
-%define nextcloud_version 9.0.53
+%define nextcloud_version 10.0.0
 
 %define apache_serverroot       /var/www/html
 %define apache_confdir /etc/httpd/conf.d
@@ -13,7 +13,7 @@
 Summary: Nextcloud package
 Name: nextcloud
 Version: %nextcloud_version
-Release: 2%{?dist}
+Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{nextcloud_version}.tar.bz2
 Source1: nextcloud.conf
