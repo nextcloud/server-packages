@@ -1,4 +1,4 @@
-%define nextcloud_version 10.0.1
+%define nextcloud_version 10.0.2
 
 %define apache_serverroot       /var/www/html
 %define apache_confdir /etc/httpd/conf.d
@@ -77,6 +77,9 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
+* Thu Dec 15 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 10.0.2
+- Bump release: 10.0.2
+
 * Mon Aug 01 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 9.0.53-2
 - First Nextcloud release - NethServer/dev#5055
 
