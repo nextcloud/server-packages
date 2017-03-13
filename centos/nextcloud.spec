@@ -1,4 +1,4 @@
-%define nextcloud_version 10.0.2
+%define nextcloud_version 10.0.4
 
 %define apache_serverroot       /var/www/html
 %define apache_confdir /etc/httpd/conf.d
