@@ -1,4 +1,4 @@
-%define nextcloud_version 10.0.2
+%define nextcloud_version 11.0.2
 
 %define apache_serverroot       /var/www/html
 %define apache_confdir /etc/httpd/conf.d
@@ -24,13 +24,14 @@ BuildRequires: httpd
 
 Requires: httpd
 # Required php packages
-Requires: php-gd, php-pdo, php-pear, php-mbstring, php-xml
+Requires: rh-php56, rh-php56-php-fpm
+Requires: rh-php56-php-gd, rh-php56-php-pdo, rh-php56-php-pear, rh-php56-php-mbstring, rh-php56-php-xml
 # Recommended php packages
-Requires: php-pear-Net-Curl, php-mcrypt, php-intl
+Requires: rh-php56-php-intl
 # Required php packages for specific apps
-Requires: php-ldap, php-smbclient, php-imap
+Requires: rh-php56-php-ldap
 # Required php packages for MariaDB
-Requires: php-mysql, php-pear-MDB2, php-pear-MDB2-Driver-mysqli
+Requires: rh-php56-php-mysqlnd
 
 
 %description

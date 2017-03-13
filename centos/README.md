@@ -20,11 +20,17 @@ The following dependencies are installed:
 
 * Apache HTTP server
 * PHP required packages
-* PHP recommended packages (php-pear-Net-Curl, php-mcrypt, php-intl)
-* PHP packages for builtin apps (php-ldap, php-smbclient, php-imap)
+* PHP recommended packages (php-intl)
+* PHP packages for builtin apps (php-ldap)
 * PHP packages for MariaDB/MySQL connection
 
 You need to enable EPEL repository.
+
+Following RPMs are available only in centos-sclo-sclo-testing repository:
+
+* rh-php56-php-mcrypt
+* sclo-php56-php-smbclient
+* rh-php56-php-imap
 
 SELinux
 -------
