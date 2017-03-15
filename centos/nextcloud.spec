@@ -1,6 +1,6 @@
 %define nextcloud_version 11.0.2
 
-%define apache_serverroot       /var/www/html
+%define apache_serverroot /usr/share
 %define apache_confdir /etc/httpd/conf.d
 %define nc_dir  %{apache_serverroot}/nextcloud
 %define nc_config_dir   %{nc_dir}/config
@@ -46,8 +46,8 @@ nc_config_dir: %{nc_config_dir}
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/%{nc_data_dir}
-mkdir -p %{buildroot}/var/www/html
-tar xf %{SOURCE0} -C %{buildroot}/var/www/html
+mkdir -p %{buildroot}/usr/share
+tar xf %{SOURCE0} -C %{buildroot}/usr/share
 
 mkdir -p %{buildroot}/%{nc_dir}
 mkdir -p %{buildroot}/%{nc_dir}/etc
