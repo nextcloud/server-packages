@@ -70,8 +70,9 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 %attr(0775,%{nc_user},%{nc_group}) %{nc_data_dir}
 %attr(0775,%{nc_user},%{nc_group}) %{nc_config_dir}
 
-%config %attr(0644,%{nc_user},%{nc_group}) %{nc_dir}/.htaccess
-/etc/httpd/conf.d/nextcloud.conf
+%config(noreplace) %attr(0644,%{nc_user},%{nc_group}) %{nc_dir}/.user.ini
+%config(noreplace) %attr(0644,%{nc_user},%{nc_group}) %{nc_dir}/.htaccess
+%config(noreplace) %attr(0644,root,root) /etc/httpd/conf.d/nextcloud.conf
 
 %defattr(0644,%{nc_user},%{nc_group},0755)
 
