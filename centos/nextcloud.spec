@@ -1,4 +1,4 @@
-%define nextcloud_version 11.0.3
+%define nextcloud_version 12.0.0
 
 %define apache_serverroot /usr/share
 %define apache_confdir /etc/httpd/conf.d
@@ -13,7 +13,7 @@
 Summary: Nextcloud package
 Name: nextcloud
 Version: %nextcloud_version
-Release: 2%{?dist}
+Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{nextcloud_version}.tar.bz2
 Source1: nextcloud.conf
@@ -62,13 +62,26 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 %files 
 %defattr(0640,root,%{nc_group},0750)
-%attr(0755,root,%{nc_group}) %{nc_dir}
+%dir %attr(0755,root,%{nc_group}) %{nc_dir}
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/occ
 %attr(0750,%{nc_user},%{nc_group}) %{nc_dir}/apps
 %attr(0750,%{nc_user},%{nc_group}) %{nc_dir}/assets
 %attr(0750,%{nc_user},%{nc_group}) %{nc_dir}/updater
 %attr(0775,%{nc_user},%{nc_group}) %{nc_data_dir}
 %attr(0775,%{nc_user},%{nc_group}) %{nc_config_dir}
+%attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/lib
+%attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/core
+%attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/settings
+%attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/3rdparty
+%attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/resources
+%attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/themes
+%attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/ocs*
+%attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/l10n
+%attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/*.php
+%attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/AUTHORS
+%attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/db_structure.xml
+%attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/index.html
+%attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/robots.txt
 
 %config(noreplace) %attr(0644,%{nc_user},%{nc_group}) %{nc_dir}/.user.ini
 %config(noreplace) %attr(0644,%{nc_user},%{nc_group}) %{nc_dir}/.htaccess
@@ -77,8 +90,11 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 %defattr(0644,%{nc_user},%{nc_group},0755)
 
 
-
 %changelog
+* Tue May 24 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 12.0.0
+- Update to release 12.0.0
+- Fix spec warnings - Thanks to @mbevc1
+
 * Wed May 17 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 11.0.3-2
 - Fix WebDAV authentication - Thanks to Davide Principi
 
