@@ -1,4 +1,4 @@
-%define nextcloud_version 12.0.0
+%define nextcloud_version 12.0.2
 
 %define apache_serverroot /usr/share
 %define apache_confdir /etc/httpd/conf.d
@@ -91,7 +91,10 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
-* Tue May 24 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 12.0.0
+* Wed Aug 23 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 12.0.2
+- Update to release 12.0.2
+
+* Wed May 24 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 12.0.0
 - Update to release 12.0.0
 - Fix spec warnings - Thanks to @mbevc1
 
