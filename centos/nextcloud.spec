@@ -16,7 +16,7 @@
 Summary: Nextcloud package
 Name: nextcloud
 Version: %nextcloud_version
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{nextcloud_version}.tar.bz2
 Source1: nextcloud.conf
@@ -94,6 +94,9 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
+* Tue Aug 29 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 12.0.2-2
+- Avoid security warnings on python compiled files
+
 * Wed Aug 23 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 12.0.2
 - Update to release 12.0.2
 
