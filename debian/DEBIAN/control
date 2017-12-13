@@ -1,0 +1,8 @@
+Package: nextcloud
+Version: 12.0.3
+Section: misc
+Priority: optional
+Architecture: amd64
+Depends: php7.0,php7.0-xml,php7.0-cgi,php-cli,php7.0-mysql,php7.0-mbstring,php7.0-gd,php7.0-curl,php7.0-zip,apache2,libapache2-mod-php7.0
+Maintainer: to be defined
+Description: to be defined
