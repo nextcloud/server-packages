@@ -1,4 +1,4 @@
-%define nextcloud_version 12.0.3
+%define nextcloud_version 12.0.4
 
 %define apache_serverroot /usr/share
 %define apache_confdir /etc/httpd/conf.d
