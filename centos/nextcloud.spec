@@ -94,6 +94,9 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
+* Thu Dec 14 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - centos-12.0.4-1
+- Update to release 12.0.4
+
 * Wed Sep 27 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 12.0.3
 - Update to release 12.0.3
 
