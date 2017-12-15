@@ -21,12 +21,12 @@ in this section all packages will be described in general.
 
 ### The nextcloud Package
 
-This Package contains all needed files for nexcloud this will be placed with the build.sh at the location usr/share. The only dependecy for this package is the dependency to a webserver variant for example nextcloud-apache [see section Depends](nextcloud/DEBIAN/control)
+This package contains all needed files for nexcloud. This will be placed with the build.sh at the location usr/share. The only dependency for this package is the dependency to a webserver variant, for example nextcloud-apache [see section Depends](nextcloud/DEBIAN/control)
 After the installation, the administrator should take care of the following:
 
 ### The nextcloud-apache Package
 
-this package enable a nextcloud apache site, after the installation you have to setup your owncloud installation.
+this package enable a nextcloud apache site, after the installation you have to setup your own cloud installation.
 
 - setup owncloud
 
@@ -48,12 +48,12 @@ TODO: not implemented yet
 
 ## testbed
 
-the directory testbed contains all services that may needed to test the nextcloud packages it should test the configuration and services not a correct implementation.
-to get the infrastructure up and running it uses Docker. The subdirectory packer did not belong to the compose file it just provide a docker machine to build the debian packages in case that you will not use a linux machine to build the packages.
+the directory testbed contains all services that may needed to test the nextcloud packages. It should test the configuration and services but not a correct implementation.
+To get the infrastructure up and running it uses Docker. The subdirectory packer does not belong to the compose file. In case you do not have a linux machine, it just provides a docker machine to build the debian packages. 
 
 ### packer
 
-this container can be used to run the toplevel build.sh without install any buildtool except [docker](https://www.docker.com/get-docker)
+this container can be used to run the toplevel build.sh without installing any buildtool except [docker](https://www.docker.com/get-docker)
 
 on windows run
 
@@ -70,9 +70,9 @@ dockerexec ./build.sh
 
 ### nextclouddb
 
-this service provide a mysql database for nextcloud
+this service provides a mysql database for nextcloud
 
 ### nextcloud-apache
 
-the directory provide an apache server whith the nextcloud file configured in a prper way includ the setup rotine. To get access call just open [nextcloud](http://localhost/nextcloud).
+the directory provides an apache server with the nextcloud file configured in a proper way included the setup routine. To get access call just open [nextcloud](http://localhost/nextcloud).
 Authentication names and credentials can be found in the [security directory](testbed/secrets/).
