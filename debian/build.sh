@@ -17,11 +17,11 @@ else
 fi
 
 #unzip downloads/nextcloud-12.0.4.zip -d usr/share/
-unzip downloads/nextcloud-12.0.4.zip -d usr/share/ -x "nextcloud/config/*"
+unzip downloads/nextcloud-12.0.4.zip -d nextcloud/usr/share/ -x "nextcloud/config/*" -x "nextcloud/data"
 #rm usr/share/nextcloud/config/
 #cd usr/share/nextcloud
-if [ -s usr/share/nextcloud/config ];then
-	ln -s /etc/nextcloud/config usr/share/nextcloud/config
+if [ -s nextcloud/usr/share/nextcloud/config ];then
+	ln -s /etc/nextcloud/config nextcloud/usr/share/nextcloud/config
 fi
 fakeroot dpkg -b . testbed/nextcloud
 
