@@ -15,15 +15,23 @@ if [ -f downloads/nextcloud-${version}.zip.sha256 ];then
 else
 	curl ${downloadurl}/nextcloud-${version}.zip.sha256 -o downloads/nextcloud-${version}.zip.sha256
 fi
+#check the sha256 sum
+SHA256SUM=`cat downloads/nextcloud-${version}.zip.sha256|cut -f1 -d' '`
+#this migth just run on mac?
+MYSUM=`shasum -a 256 downloads/nextcloud-12.0.4.zip|cut -f1 -d' '`
 
-#unzip downloads/nextcloud-12.0.4.zip -d usr/share/
+if [ "$MYSUM" == "$SHA256SUM" ];then 
+	echo "hash match"
+else
+	echo "sha256 mismatch press key to continue"
+	read line 
+fi
+
 unzip downloads/nextcloud-12.0.4.zip -d nextcloud/usr/share/ -x "nextcloud/config/*" -x "nextcloud/data"
-#rm usr/share/nextcloud/config/
-#cd usr/share/nextcloud
-if [ -s nextcloud/usr/share/nextcloud/config ];then
+if [ ! -h nextcloud/usr/share/nextcloud/config ];then
 	ln -s /etc/nextcloud/config nextcloud/usr/share/nextcloud/config
 fi
-fakeroot dpkg -b . testbed/nextcloud
+fakeroot dpkg -b nextcloud testbed/nextcloud
 
 
 docker-compose -f testbed/docker-compose.yml build

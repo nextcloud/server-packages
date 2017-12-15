@@ -1,0 +1,5 @@
+# Ignore everything in this directory
+nextcloud_*.deb
+# Except this file
+!.gitignore
+
