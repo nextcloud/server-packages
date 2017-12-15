@@ -31,7 +31,11 @@ unzip downloads/nextcloud-12.0.4.zip -d nextcloud/usr/share/ -x "nextcloud/confi
 if [ ! -h nextcloud/usr/share/nextcloud/config ];then
 	ln -s /etc/nextcloud/config nextcloud/usr/share/nextcloud/config
 fi
-fakeroot dpkg -b nextcloud testbed/nextcloud
+
+#build the base package
+fakeroot dpkg -b nextcloud testbed/nextcloud-apache
+fakeroot dpkg -b nextcloud-apache testbed/nextcloud-apache
+
 
 
 docker-compose -f testbed/docker-compose.yml build

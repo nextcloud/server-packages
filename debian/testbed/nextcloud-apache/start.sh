@@ -1,5 +1,6 @@
 #!/bin/bash
-
+#we need a check wether or nor the db is ok
+sleep 20
 #check if nexcloud is configured...
 cd /usr/share/nextcloud
 sudo -u www-data php occ check|grep "Nextcloud is not installed"
