@@ -1,4 +1,4 @@
-%define nextcloud_version 12.0.4
+%define nextcloud_version 12.0.5
 
 %define apache_serverroot /usr/share
 %define apache_confdir /etc/httpd/conf.d
@@ -16,7 +16,7 @@
 Summary: Nextcloud package
 Name: nextcloud
 Version: %nextcloud_version
-Release: 2%{?dist}
+Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{nextcloud_version}.tar.bz2
 Source1: nextcloud.conf
@@ -94,6 +94,9 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
+* Thu Jan 25 2018 Alessandro Polidori <alessandro.polidori@nethesis.it> - centos-12.0.5-1
+- Update to release 12.0.5
+
 * Mon Jan 15 2018 Alessandro Polidori <alessandro.polidori@nethesis.it> - centos-12.0.4-2
 - Spec: remove "config" sign from .htaccess
 
