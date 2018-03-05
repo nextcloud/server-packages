@@ -27,14 +27,21 @@ BuildRequires: httpd
 
 Requires: httpd
 # Required php packages
-Requires: rh-php56, rh-php56-php-fpm
-Requires: rh-php56-php-gd, rh-php56-php-pdo, rh-php56-php-pear, rh-php56-php-mbstring, rh-php56-php-xml
+Requires: rh-php71
+Requires: rh-php71-php-fpm
+Requires: rh-php71-php-gd
+Requires: rh-php71-php-pdo
+Requires: rh-php71-php-mbstring
+
 # Recommended php packages
-Requires: rh-php56-php-intl
+Requires: rh-php71-php-intl
+Requires: rh-php71-php-mcrypt
+
 # Required php packages for specific apps
-Requires: rh-php56-php-ldap
+Requires: rh-php71-php-ldap
+
 # Required php packages for MariaDB
-Requires: rh-php56-php-mysqlnd
+Requires: rh-php71-php-pdo_mysql
 
 
 %description
