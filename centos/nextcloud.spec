@@ -15,7 +15,7 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: %nextcloud_version
+Version: 13.0.0
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{nextcloud_version}.tar.bz2
@@ -100,13 +100,16 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
-* Thu Jan 25 2018 Alessandro Polidori <alessandro.polidori@nethesis.it> - centos-12.0.5-1
+* Tue Mar 06 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 13.0.0-1
+- Update to release 13.0.0
+
+* Thu Jan 25 2018 Alessandro Polidori <alessandro.polidori@nethesis.it> - 12.0.5-1
 - Update to release 12.0.5
 
-* Mon Jan 15 2018 Alessandro Polidori <alessandro.polidori@nethesis.it> - centos-12.0.4-2
+* Mon Jan 15 2018 Alessandro Polidori <alessandro.polidori@nethesis.it> - 12.0.4-2
 - Spec: remove "config" sign from .htaccess
 
-* Thu Dec 14 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - centos-12.0.4-1
+* Thu Dec 14 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 12.0.4-1
 - Update to release 12.0.4
 
 * Wed Sep 27 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 12.0.3
