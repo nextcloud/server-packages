@@ -15,7 +15,7 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 13.0.0
+Version: 13.0.1
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{nextcloud_version}.tar.bz2
@@ -99,6 +99,9 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
+* Tue Mar 19 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 13.0.1-1
+- Update to release 13.0.1
+
 * Tue Mar 06 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 13.0.0-1
 - Update to release 13.0.0
 
