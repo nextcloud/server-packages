@@ -1,4 +1,4 @@
-%define nextcloud_version 13.0.0
+%define nextcloud_version 13.0.1
 
 %define apache_serverroot /usr/share
 %define apache_confdir /etc/httpd/conf.d
@@ -86,7 +86,6 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/resources
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/themes
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/ocs*
-%attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/l10n
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/*.php
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/AUTHORS
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/index.html
