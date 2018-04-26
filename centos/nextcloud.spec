@@ -1,4 +1,4 @@
-%define nextcloud_version 13.0.1
+%define nextcloud_version 13.0.2
 
 %define apache_serverroot /usr/share
 %define apache_confdir /etc/httpd/conf.d
@@ -99,6 +99,9 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
+* Thu Apr 26 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 13.0.2-1
+- Update to release 13.0.2
+
 * Tue Mar 19 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 13.0.1-1
 - Update to release 13.0.1
 
