@@ -1,5 +1,3 @@
-%define nextcloud_version 13.0.3
-
 %define apache_serverroot /usr/share
 %define apache_confdir /etc/httpd/conf.d
 %define nc_dir  %{apache_serverroot}/nextcloud
@@ -18,7 +16,7 @@ Name: nextcloud
 Version: 13.0.3
 Release: 1%{?dist}
 License: GPL
-Source: https://download.nextcloud.com/server/releases/nextcloud-%{nextcloud_version}.tar.bz2
+Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
 Source1: nextcloud.conf
 BuildArch: noarch
 URL: https://nextcloud.com/
