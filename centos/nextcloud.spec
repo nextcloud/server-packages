@@ -1,5 +1,3 @@
-%define nextcloud_version 13.0.3
-
 %define apache_serverroot /usr/share
 %define apache_confdir /etc/httpd/conf.d
 %define nc_dir  %{apache_serverroot}/nextcloud
@@ -18,7 +16,7 @@ Name: nextcloud
 Version: 13.0.3
 Release: 1%{?dist}
 License: GPL
-Source: https://download.nextcloud.com/server/releases/nextcloud-%{nextcloud_version}.tar.bz2
+Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
 Source1: nextcloud.conf
 BuildArch: noarch
 URL: https://nextcloud.com/
@@ -105,7 +103,7 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 * Thu Apr 26 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 13.0.2-1
 - Update to release 13.0.2
 
-* Tue Mar 19 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 13.0.1-1
+* Mon Mar 19 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 13.0.1-1
 - Update to release 13.0.1
 
 * Tue Mar 06 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 13.0.0-1
