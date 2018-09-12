@@ -13,7 +13,7 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 13.0.6
+Version: 14.0.0
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
@@ -78,6 +78,7 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 %attr(0775,%{nc_user},%{nc_group}) %{nc_data_dir}
 %attr(0775,%{nc_user},%{nc_group}) %{nc_config_dir}
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/lib
+%attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/ocm-provider
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/core
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/settings
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/3rdparty
@@ -97,6 +98,9 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
+* Thu Sep 6 2018 Alessandro Polidori <alessandro.polidori@nethesis.it> - 14.0.0-1
+- Update to release 14.0.0
+
 * Wed Sep 5 2018 Alessandro Polidori <alessandro.polidori@nethesis.it> - 13.0.6-1
 - Update to release 13.0.6
 
