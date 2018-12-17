@@ -13,7 +13,7 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 14.0.4
+Version: 15.0.0
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
@@ -30,6 +30,7 @@ Requires: rh-php71-php-fpm
 Requires: rh-php71-php-gd
 Requires: rh-php71-php-pdo
 Requires: rh-php71-php-mbstring
+Requires: rh-php71-php-imagick
 
 # Recommended php packages
 Requires: rh-php71-php-intl
