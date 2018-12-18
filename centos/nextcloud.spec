@@ -100,6 +100,9 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
+* Tue Dic 18 2018 Alessandro Polidori <alessandro.polidori@nethesis.it> - 15.0.0-1
+- Update to release 15.0.0
+
 * Mon Nov 26 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 14.0.4-1
 - Update to release 14.0.4
 
