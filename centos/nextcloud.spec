@@ -8,16 +8,20 @@
 %define nc_group apache
 
 # Turn off the brp-python-bytecompile script
-%global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
-
+%global __os_install_post %{nil}
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 14.0.4
+Version: 14.0.8
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
 Source1: nextcloud.conf
+Source2: https://nextcloud.com/nextcloud.asc
+Source3: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2.asc
+Source4: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2.md5
+Source5: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2.sha256
+Source6: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2.sha512
 BuildArch: noarch
 URL: https://nextcloud.com/
 
@@ -50,6 +54,17 @@ nc_dir:        %{nc_dir}
 nc_data_dir:   %{nc_data_dir}
 nc_config_dir: %{nc_config_dir}
 
+%prep
+cd %{_sourcedir}
+/usr/bin/md5sum -c %{SOURCE4}
+if [ $? -ne 0 ] ; then echo md5sum did not match ; exit 1 ; fi
+/usr/bin/sha256sum -c %{SOURCE5}
+if [ $? -ne 0 ] ; then echo sha256sum did not match ; exit 1 ; fi
+/usr/bin/sha512sum -c %{SOURCE6}
+if [ $? -ne 0 ] ; then echo sha512sum did not match ; exit 1 ; fi
+/usr/bin/gpg --import %{SOURCE2}
+/usr/bin/gpg --verify %{SOURCE3} %{SOURCE0}
+if [ $? -ne 0 ] ; then echo gpg signature did not match ; exit 1 ; fi
 
 %install
 rm -rf %{buildroot}
