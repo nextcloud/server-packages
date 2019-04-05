@@ -12,11 +12,11 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 14.0.8
+Version: 14.0.9
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
-Source1: nextcloud.conf
+Source1: https://raw.githubusercontent.com/nextcloud/server-packages/v14/centos/nextcloud.conf
 Source2: https://nextcloud.com/nextcloud.asc
 Source3: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2.asc
 Source4: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2.md5
@@ -54,6 +54,7 @@ nc_dir:        %{nc_dir}
 nc_data_dir:   %{nc_data_dir}
 nc_config_dir: %{nc_config_dir}
 
+
 %prep
 cd %{_sourcedir}
 /usr/bin/md5sum -c %{SOURCE4}
@@ -65,6 +66,7 @@ if [ $? -ne 0 ] ; then echo sha512sum did not match ; exit 1 ; fi
 /usr/bin/gpg --import %{SOURCE2}
 /usr/bin/gpg --verify %{SOURCE3} %{SOURCE0}
 if [ $? -ne 0 ] ; then echo gpg signature did not match ; exit 1 ; fi
+
 
 %install
 rm -rf %{buildroot}
@@ -114,6 +116,9 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
+* Thu Apr 4 2019 B Galliart <ben@steadfast.net> - 14.0.9-1
+- Update to release 14.0.9
+
 * Mon Nov 26 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 14.0.4-1
 - Update to release 14.0.4
 
