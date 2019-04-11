@@ -12,7 +12,7 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 14.0.9
+Version: 14.0.10
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
@@ -116,6 +116,9 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
+* Thu Apr 8 2019 B Galliart <ben@steadfast.net> - 14.0.10-1
+- Update to release 14.0.10
+
 * Thu Apr 4 2019 B Galliart <ben@steadfast.net> - 14.0.9-1
 - Update to release 14.0.9
 
