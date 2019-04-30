@@ -13,11 +13,12 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 15.0.7
+Version: 16.0.0
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
 Source1: nextcloud.conf
+Source2: nextcloud-fpm.conf
 BuildArch: noarch
 URL: https://nextcloud.com/
 
@@ -67,6 +68,8 @@ mkdir -p %{buildroot}/%{nc_dir}/updater
 
 mkdir -p %{buildroot}/etc/httpd/conf.d
 cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
+mkdir -p %{buildroot}/etc/opt/rh/rh-php71/php-fpm.d/
+cp %{SOURCE2} %{buildroot}/etc/opt/rh/rh-php71/php-fpm.d/nextcloud.conf
 
 
 %files 
@@ -95,11 +98,15 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 %config(noreplace) %attr(0644,%{nc_user},%{nc_group}) %{nc_dir}/.user.ini
 %config(noreplace) %attr(0644,root,root) /etc/httpd/conf.d/nextcloud.conf
+%config(noreplace) %attr(0644,root,root) /etc/opt/rh/rh-php71/php-fpm.d/nextcloud.conf
 
 %defattr(0644,%{nc_user},%{nc_group},0755)
 
 
 %changelog
+* Tue Apr 30 2019 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 16.0.0-1
+- Update to release 16.0.0
+
 * Wed Apr 24 2019 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 15.0.7-1
 - Update to release 15.0.7
 
