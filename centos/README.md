@@ -29,8 +29,8 @@ You need to enable EPEL repository.
 
 The administrator can enable extra features installing following RPMs (from centos-sclo-sclo repository):
 
-* sclo-php71-php-smbclient
-* rh-php71-php-imap
+* sclo-php72-php-smbclient
+* rh-php72-php-imap
 
 SELinux
 -------
