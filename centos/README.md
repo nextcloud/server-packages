@@ -1,6 +1,22 @@
 Nextcloud
 =========
 
+
+End of Life Notice
+------------------
+NextCloud 14 is stated to be End of Life as of September 2019
+
+Past the EoL date there will no longer be security or maintenance fixes
+provided.  It is important to plan accordingly.
+
+Also NextCloud does not support skipping major versions.  To keep the
+database schema current, it is important to run the upgrade (such as 
+through the OCC CLI) for each major version.
+
+
+About
+-----
+
 This repository can be used to build a very basic RPM suited for CentOS 7.
 It uses Apache 2.4 with PHP-FPM to avoid conflicts with existing 
 PHP 5.4 applications.  This also running Apache with a multi-threaded MPM
