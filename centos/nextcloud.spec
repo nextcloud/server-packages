@@ -8,16 +8,20 @@
 %define nc_group apache
 
 # Turn off the brp-python-bytecompile script
-%global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
-
+%global __os_install_post %{nil}
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 15.0.7
+Version: 15.0.8
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
-Source1: nextcloud.conf
+Source1: https://raw.githubusercontent.com/nextcloud/server-packages/v15/centos/nextcloud.conf
+Source2: https://nextcloud.com/nextcloud.asc
+Source3: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2.asc
+Source4: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2.md5
+Source5: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2.sha256
+Source6: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2.sha512
 BuildArch: noarch
 URL: https://nextcloud.com/
 
@@ -42,6 +46,8 @@ Requires: rh-php71-php-ldap
 # Required php packages for MariaDB
 Requires: rh-php71-php-pdo_mysql
 
+# NextCloud does not support skipping a major version number
+Conflicts: nextcloud < 14
 
 %description
 Nextcloud files and configuration.
@@ -51,6 +57,17 @@ nc_dir:        %{nc_dir}
 nc_data_dir:   %{nc_data_dir}
 nc_config_dir: %{nc_config_dir}
 
+%prep
+cd %{_sourcedir}
+/usr/bin/md5sum -c %{SOURCE4}
+if [ $? -ne 0 ] ; then echo md5sum did not match ; exit 1 ; fi
+/usr/bin/sha256sum -c %{SOURCE5}
+if [ $? -ne 0 ] ; then echo sha256sum did not match ; exit 1 ; fi
+/usr/bin/sha512sum -c %{SOURCE6}
+if [ $? -ne 0 ] ; then echo sha512sum did not match ; exit 1 ; fi
+/usr/bin/gpg --import %{SOURCE2}
+/usr/bin/gpg --verify %{SOURCE3} %{SOURCE0}
+if [ $? -ne 0 ] ; then echo gpg signature did not match ; exit 1 ; fi
 
 %install
 rm -rf %{buildroot}
@@ -100,6 +117,10 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
+* Thu May 16 2019 B Galliart <ben@steadfast.net> - 15.0.8-1
+- Update to release 15.0.8
+- Added signature/digest integrity checking to rpm prep
+
 * Wed Apr 24 2019 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 15.0.7-1
 - Update to release 15.0.7
 
