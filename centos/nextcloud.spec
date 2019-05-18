@@ -12,7 +12,7 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 14.0.10
+Version: 14.0.12
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
@@ -45,6 +45,8 @@ Requires: rh-php71-php-ldap
 # Required php packages for MariaDB
 Requires: rh-php71-php-pdo_mysql
 
+# NextCloud does not support skipping a major version number
+Conflicts: nextcloud < 13
 
 %description
 Nextcloud files and configuration.
@@ -85,6 +87,23 @@ mkdir -p %{buildroot}/etc/httpd/conf.d
 cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
+%post
+cat << EOF
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+NextCloud End of Life Notice
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+This NextCloud version is stated to be End of Life as of September 2019
+
+Past the EoL date there will no longer be security or maintenance fixes
+provided.  It is important to plan an upgrade schedule accordingly.
+
+Also NextCloud does not support skipping major versions.  To keep the
+database schema current, it is important to run the upgrade (such as 
+through the OCC CLI) for each major version.
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+EOF
+
+
 %files 
 %defattr(0640,root,%{nc_group},0750)
 %dir %attr(0755,root,%{nc_group}) %{nc_dir}
@@ -116,6 +135,10 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
+* Thu May 17 2019 B Galliart <ben@steadfast.net> - 14.0.12-1
+- Update to release 14.0.12
+- Added EoL warning notice for v14
+
 * Thu Apr 8 2019 B Galliart <ben@steadfast.net> - 14.0.10-1
 - Update to release 14.0.10
 
