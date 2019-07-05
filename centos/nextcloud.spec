@@ -13,7 +13,7 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 16.0.1
+Version: 16.0.2
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
@@ -103,6 +103,9 @@ cp %{SOURCE2} %{buildroot}/etc/opt/rh/rh-php72/php-fpm.d/nextcloud.conf
 
 
 %changelog
+* Fri Jul 5 2019 Alessandro Polidori <alessandro.polidori@nethesis.it> - 16.0.2-1
+- Update to release 16.0.2
+
 * Tue May 21 2019 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 16.0.1-1
 - Update to release 16.0.1
 
