@@ -12,7 +12,7 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 14.0.12
+Version: 14.0.13
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
@@ -135,6 +135,9 @@ EOF
 
 
 %changelog
+* Mon Jul 8 2019 B Galliart <ben@steadfast.net> - 14.0.13-1
+- Update to release 14.0.13
+
 * Thu May 17 2019 B Galliart <ben@steadfast.net> - 14.0.12-1
 - Update to release 14.0.12
 - Added EoL warning notice for v14
