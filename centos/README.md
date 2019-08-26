@@ -46,12 +46,11 @@ The following dependencies are installed:
 * PHP packages for builtin apps (php-ldap)
 * PHP packages for MariaDB/MySQL connection
 
--You need to enable EPEL  and SCL repositories.
--
--On CentOS this can be done by running:
--
--  yum -y install epel-release centos-release-scl
-+You need to enable EPEL repository.
+You need to enable EPEL and SCL repositories.
+
+On CentOS this can be done by running:
+
+  yum -y install epel-release centos-release-scl
  
 On Red Hat Enterprise Linux run:
 
@@ -63,6 +62,18 @@ The administrator can enable extra features installing following RPMs
 
  * sclo-php71-php-smbclient
  * rh-php71-php-imap
+
+
+Installing RPM
+--------------
+
+Once the RPM is built, it can be found in the following directory:
+  rpmbuild/RPMS/noarch
+
+It can be installed by running:
+  yum -y rpmbuild/RPMS/noarch/nextcloud-x.x.x-x.el7.noarch.rpm
+
+Replace the x characters with the actual version.
 
 
 SELinux
