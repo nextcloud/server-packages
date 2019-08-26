@@ -12,7 +12,7 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 14.0.13
+Version: 14.0.14
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
@@ -29,21 +29,20 @@ BuildRequires: httpd
 
 Requires: httpd
 # Required php packages
-Requires: rh-php71
-Requires: rh-php71-php-fpm
-Requires: rh-php71-php-gd
-Requires: rh-php71-php-pdo
-Requires: rh-php71-php-mbstring
+Requires: rh-php72
+Requires: rh-php72-php-fpm
+Requires: rh-php72-php-gd
+Requires: rh-php72-php-pdo
+Requires: rh-php72-php-mbstring
 
 # Recommended php packages
-Requires: rh-php71-php-intl
-Requires: rh-php71-php-mcrypt
+Requires: rh-php72-php-intl
 
 # Required php packages for specific apps
-Requires: rh-php71-php-ldap
+Requires: rh-php72-php-ldap
 
 # Required php packages for MariaDB
-Requires: rh-php71-php-pdo_mysql
+Requires: rh-php72-php-pdo_mysql
 
 # NextCloud does not support skipping a major version number
 Conflicts: nextcloud < 13
@@ -89,20 +88,40 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 %post
 cat << EOF
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-NextCloud End of Life Notice
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-This NextCloud version is stated to be End of Life as of September 2019
 
-Past the EoL date there will no longer be security or maintenance fixes
-provided.  It is important to plan an upgrade schedule accordingly.
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+CRITICAL NextCloud v14 End of Life Notice CRITICAL
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+This NextCloud version is stated End of Life as of August 2019
 
-Also NextCloud does not support skipping major versions.  To keep the
+There will no longer be security or maintenance fixes provided.
+
+It is important to plan an upgrade schedule to NextCloud version 15
+accordingly.
+
+NextCloud does not support skipping major versions.  To keep the
 database schema current, it is important to run the upgrade (such as 
 through the OCC CLI) for each major version.
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-EOF
 
+EOF
+/usr/bin/systemctl status rh-php71-php-fpm > /dev/null
+if [ $? -eq 0 ] ; then
+cat << EOF
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+PHP 7.1 End of Life Notice
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+This system is still running the rh-php71-php-fpm service.
+
+As of December 2019, the primary PHP project will no longer be releasing
+security updates for PHP version 7.1.
+
+It is recommended you plan accordingly to upgrade to using PHP 7.2.
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+EOF
+fi
 
 %files 
 %defattr(0640,root,%{nc_group},0750)
@@ -135,6 +154,11 @@ EOF
 
 
 %changelog
+* Fri Aug 23 2019 B Galliart <ben@steadfast.net> - 14.0.14-1
+- Update to release 14.0.14
+- Update to use PHP 7.2
+- Revised End of Life notices
+
 * Mon Jul 8 2019 B Galliart <ben@steadfast.net> - 14.0.13-1
 - Update to release 14.0.13
 

@@ -2,16 +2,36 @@ Nextcloud
 =========
 
 
-End of Life Notice
-------------------
-NextCloud 14 is stated to be End of Life as of September 2019
+CRITICAL NextCloud 14 End of Life Notice CRITICAL
+-------------------------------------------------
+NextCloud 14 is End of Life as of August 2019
 
-Past the EoL date there will no longer be security or maintenance fixes
-provided.  It is important to plan accordingly.
+There will no longer be security or maintenance fixes provided.
 
-Also NextCloud does not support skipping major versions.  To keep the
+It is important to plan an upgrade schedule to NextCloud version 15
+accordingly.
+
+NextCloud does not support skipping major versions.  To keep the
 database schema current, it is important to run the upgrade (such as 
 through the OCC CLI) for each major version.
+
+More information is available here:
+https://nextcloud.com/blog/nextcloud-16.0.4-15.0.11-14.0.14-are-here/
+
+
+PHP 7.1 End of Life Notice
+--------------------------
+As of December 2019, the primary PHP project will no longer be releasing
+security updates for PHP version 7.1.
+
+It is recommended you plan accordingly to upgrade to using PHP 7.2.
+
+The RPM dependencies have also been updated accordingly.
+
+It is possible to have both PHP 7.1 and PHP 7.2 installed from the
+Software Collection at the same time.  However, the NextCloud RPM is
+configured to use the PHP FPM on localhost port 9000.  If PHP 7.1 FPM is
+still using the port, that is the version of PHP that will be used.
 
 
 About
@@ -76,8 +96,20 @@ On Red Hat Enterprise Linux run:
 The administrator can enable extra features installing following RPMs 
 (from centos-sclo-sclo repository):
 
-* sclo-php71-php-smbclient
-* rh-php71-php-imap
+* sclo-php72-php-smbclient
+* sclo-php72-php-imap
+
+
+Installing RPM
+--------------
+
+Once the RPM is built, it can be found in the following directory:
+  rpmbuild/RPMS/noarch
+
+It can be installed by running:
+  yum -y rpmbuild/RPMS/noarch/nextcloud-x.x.x-x.el7.noarch.rpm
+
+Replace the x characters with the actual version.
 
 
 SELinux
