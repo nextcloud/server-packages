@@ -1,6 +1,32 @@
 Nextcloud
 =========
 
+
+NextCloud 15 End of Life Notice
+-------------------------------
+NextCloud 15 is End of Life as of August 2019
+
+There will no longer be security or maintenance fixes provided.
+
+It is important to plan an upgrade schedule to NextCloud version 16
+accordingly.
+
+NextCloud does not support skipping major versions when upgrading.  
+To keep the database schema current, it is important to run the 
+upgrade (such as through the OCC CLI) for each major version.
+
+
+PHP 7.1 End of Life Notice
+--------------------------
+As of December 2019, the primary PHP project will no longer be releasing
+security updates for PHP version 7.1.
+
+It is recommended you plan accordingly to upgrade to using PHP 7.2.
+
+
+About
+-----
+
 This repository can be used to build a very basic RPM suited for CentOS 7.
 It uses Apache 2.4 with PHP-FPM to avoid conflicts with existing 
 PHP 5.4 applications.  This also allows running Apache with a 
