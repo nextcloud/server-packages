@@ -117,6 +117,8 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 %changelog
 * Thu Nov 7 2019 B Galliart <ben@steadfast.net> - 15.0.13-1
+- Update to release 15.0.13
+- Updated dependencies to PHP 7.2
 
 * Thu Sep 26 2019 B Galliart <ben@steadfast.net> - 15.0.12-1
 - Update to release 15.0.12
