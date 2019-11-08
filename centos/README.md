@@ -4,7 +4,7 @@ Nextcloud
 
 NextCloud 15 End of Life Notice
 -------------------------------
-NextCloud 15 is End of Life as of August 2019
+NextCloud 15 is End of Life as of December 2019
 
 There will no longer be security or maintenance fixes provided.
 
@@ -22,6 +22,10 @@ As of December 2019, the primary PHP project will no longer be releasing
 security updates for PHP version 7.1.
 
 It is recommended you plan accordingly to upgrade to using PHP 7.2.
+
+The RPM dependencies have also been updated accordingly.
+
+It is possible to have both PHP 7.1 and PHP 7.2 installed from the Software Collection at the same time. However, the NextCloud RPM is configured to use the PHP FPM on localhost port 9000. If PHP 7.1 FPM is still using the port, that is the version of PHP that will be used.
 
 
 About
@@ -86,8 +90,8 @@ On Red Hat Enterprise Linux run:
 The administrator can enable extra features installing following RPMs 
 (from centos-sclo-sclo repository):
 
- * sclo-php71-php-smbclient
- * rh-php71-php-imap
+ * sclo-php72-php-smbclient
+ * sclo-php72-php-imap
 
 
 Installing RPM

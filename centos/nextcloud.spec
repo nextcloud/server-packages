@@ -12,7 +12,7 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 15.0.12
+Version: 15.0.13
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
@@ -29,22 +29,21 @@ BuildRequires: httpd
 
 Requires: httpd
 # Required php packages
-Requires: rh-php71
-Requires: rh-php71-php-fpm
-Requires: rh-php71-php-gd
-Requires: rh-php71-php-pdo
-Requires: rh-php71-php-mbstring
-Requires: rh-php71-php-imagick
+Requires: rh-php72
+Requires: rh-php72-php-fpm
+Requires: rh-php72-php-gd
+Requires: rh-php72-php-pdo
+Requires: rh-php72-php-mbstring
+Requires: rh-php72-php-imagick
 
 # Recommended php packages
-Requires: rh-php71-php-intl
-Requires: rh-php71-php-mcrypt
+Requires: rh-php72-php-intl
 
 # Required php packages for specific apps
-Requires: rh-php71-php-ldap
+Requires: rh-php72-php-ldap
 
 # Required php packages for MariaDB
-Requires: rh-php71-php-pdo_mysql
+Requires: rh-php72-php-pdo_mysql
 
 # NextCloud does not support skipping a major version number
 Conflicts: nextcloud < 14
@@ -117,6 +116,8 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
+* Thu Nov 7 2019 B Galliart <ben@steadfast.net> - 15.0.13-1
+
 * Thu Sep 26 2019 B Galliart <ben@steadfast.net> - 15.0.12-1
 - Update to release 15.0.12
 
