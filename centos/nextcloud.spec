@@ -13,7 +13,7 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 17.0.1
+Version: 17.0.2
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
