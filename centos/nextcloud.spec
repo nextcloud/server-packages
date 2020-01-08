@@ -103,6 +103,9 @@ cp %{SOURCE2} %{buildroot}/etc/opt/rh/rh-php72/php-fpm.d/nextcloud.conf
 
 
 %changelog
+* Wed Jan 08 2020 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it>- 17.0.2-1
+- Update to release 17.0.2
+
 * Tue Nov 26 2019 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it>- 17.0.1-1
 - Update to release 17.0.1
 
