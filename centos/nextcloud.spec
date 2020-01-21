@@ -13,7 +13,7 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 17.0.2
+Version: 18.0.0
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
@@ -83,7 +83,6 @@ cp %{SOURCE2} %{buildroot}/etc/opt/rh/rh-php72/php-fpm.d/nextcloud.conf
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/lib
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/ocm-provider
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/core
-%attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/settings
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/3rdparty
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/resources
 %attr(0755,%{nc_user},%{nc_group}) %{nc_dir}/themes
@@ -103,6 +102,9 @@ cp %{SOURCE2} %{buildroot}/etc/opt/rh/rh-php72/php-fpm.d/nextcloud.conf
 
 
 %changelog
+* Mon Jan 20 2020 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it>- 18.0.0-1
+- Update to release 18.0.0
+
 * Wed Jan 08 2020 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it>- 17.0.2-1
 - Update to release 17.0.2
 
