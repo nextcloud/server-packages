@@ -12,7 +12,7 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 15.0.13
+Version: 15.0.14
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
@@ -85,6 +85,41 @@ mkdir -p %{buildroot}/etc/httpd/conf.d
 cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
+%post
+cat << EOF
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+CRITICAL NextCloud v15 End of Life Notice CRITICAL
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+This NextCloud version is stated End of Life as of December 2019
+
+There will no longer be security or maintenance fixes provided.
+
+It is important to plan an upgrade schedule to NextCloud version 16
+accordingly.
+
+NextCloud does not support skipping major versions.  To keep the
+database schema current, it is important to run the upgrade (such as 
+through the OCC CLI) for each major version.
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+EOF
+/usr/bin/systemctl status rh-php71-php-fpm > /dev/null
+if [ $? -eq 0 ] ; then
+cat << EOF
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+PHP 7.1 End of Life Notice
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+This system is still running the rh-php71-php-fpm service.
+
+As of December 2019, the primary PHP project will no longer be releasing
+security updates for PHP version 7.1.
+
+It is recommended you plan accordingly to upgrade to using PHP 7.2.
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+EOF
+fi
+
+
 %files 
 %defattr(0640,root,%{nc_group},0750)
 %dir %attr(0755,root,%{nc_group}) %{nc_dir}
@@ -116,6 +151,9 @@ cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 
 
 %changelog
+* Tue Jan 21 2020 B Galliart <ben@steadfast.net> - 15.0.14-1
+- Update to release 15.0.14
+
 * Thu Nov 7 2019 B Galliart <ben@steadfast.net> - 15.0.13-1
 - Update to release 15.0.13
 - Updated dependencies to PHP 7.2
