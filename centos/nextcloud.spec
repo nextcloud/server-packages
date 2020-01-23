@@ -13,12 +13,17 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 16.0.5
+Version: 16.0.7
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
-Source1: nextcloud.conf
-Source2: nextcloud-fpm.conf
+Source1: https://raw.githubusercontent.com/nextcloud/server-packages/v16/centos/nextcloud.conf
+Source2: https://raw.githubusercontent.com/nextcloud/server-packages/v16/centos/nextcloud-fpm.conf
+Source3: https://nextcloud.com/nextcloud.asc
+Source4: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2.asc
+Source5: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2.md5
+Source6: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2.sha256
+Source7: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2.sha512
 BuildArch: noarch
 URL: https://nextcloud.com/
 
@@ -42,6 +47,8 @@ Requires: rh-php72-php-ldap
 # Required php packages for MariaDB
 Requires: rh-php72-php-pdo_mysql
 
+# NextCloud does not support skipping a major version number
+Conflicts: nextcloud < 15
 
 %description
 Nextcloud files and configuration.
@@ -51,6 +58,17 @@ nc_dir:        %{nc_dir}
 nc_data_dir:   %{nc_data_dir}
 nc_config_dir: %{nc_config_dir}
 
+%prep
+cd %{_sourcedir}
+/usr/bin/md5sum -c %{SOURCE5}
+if [ $? -ne 0 ] ; then echo md5sum did not match ; exit 1 ; fi
+/usr/bin/sha256sum -c %{SOURCE6}
+if [ $? -ne 0 ] ; then echo sha256sum did not match ; exit 1 ; fi
+/usr/bin/sha512sum -c %{SOURCE7}
+if [ $? -ne 0 ] ; then echo sha512sum did not match ; exit 1 ; fi
+/usr/bin/gpg --import %{SOURCE3}
+/usr/bin/gpg --verify %{SOURCE4} %{SOURCE0}
+if [ $? -ne 0 ] ; then echo gpg signature did not match ; exit 1 ; fi
 
 %install
 rm -rf %{buildroot}
@@ -69,6 +87,47 @@ mkdir -p %{buildroot}/etc/httpd/conf.d
 cp %{SOURCE1} %{buildroot}/etc/httpd/conf.d
 mkdir -p %{buildroot}/etc/opt/rh/rh-php72/php-fpm.d/
 cp %{SOURCE2} %{buildroot}/etc/opt/rh/rh-php72/php-fpm.d/nextcloud.conf
+
+
+%post
+YM=$(date +%Y%m)
+if [ $YM -ge 202003 ] ; then
+cat << EOF
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+NextCloud v16 End of Life Notice
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+This NextCloud version is stated End of Life as of April 2020
+
+There will no longer be security or maintenance fixes provided.
+
+It is important to plan an upgrade schedule to NextCloud version 16
+accordingly.
+
+NextCloud does not support skipping major versions.  To keep the
+database schema current, it is important to run the upgrade (such as 
+through the OCC CLI) for each major version.
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+EOF
+fi
+/usr/bin/systemctl status rh-php71-php-fpm > /dev/null
+if [ $? -eq 0 ] ; then
+cat << EOF
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+PHP 7.1 End of Life Notice
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+This system is still running the rh-php71-php-fpm service.
+
+As of December 2019, the primary PHP project will no longer be releasing
+security updates for PHP version 7.1.
+
+It is recommended you plan accordingly to upgrade to using PHP 7.2.
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+EOF
+fi
 
 
 %files 
@@ -103,6 +162,9 @@ cp %{SOURCE2} %{buildroot}/etc/opt/rh/rh-php72/php-fpm.d/nextcloud.conf
 
 
 %changelog
+* Wed Jan 22 2020 B Galliart <ben@steadfast.net> - 16.0.7-1
+- Update to release 16.0.7
+
 * Thu Sep 02 2019 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it>- 16.0.4-1
 - Update to release 16.0.4
 
