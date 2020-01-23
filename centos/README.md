@@ -1,8 +1,41 @@
 Nextcloud
 =========
 
+
+NextCloud 16 End of Life Notice
+-------------------------------
+NextCloud 16 is End of Life as of April 2020
+
+There will no longer be security or maintenance fixes provided.
+
+It is important to plan an upgrade schedule to NextCloud version 17
+accordingly.
+
+NextCloud does not support skipping major versions when upgrading.  
+To keep the database schema current, it is important to run the 
+upgrade (such as through the OCC CLI) for each major version.
+
+
+PHP 7.1 End of Life Notice
+--------------------------
+As of December 2019, the primary PHP project will no longer be releasing
+security updates for PHP version 7.1.
+
+It is recommended you plan accordingly to upgrade to using PHP 7.2.
+
+The RPM dependencies have also been updated accordingly.
+
+It is possible to have both PHP 7.1 and PHP 7.2 installed from the Software Collection at the same time. However, the NextCloud RPM is configured to use the PHP FPM on localhost port 9000. If PHP 7.1 FPM is still using the port, that is the version of PHP that will be used.
+
+
+About
+-----
+
 This repository can be used to build a very basic RPM suited for CentOS 7.
-It uses Apache 2.4 with PHP-FPM to avoid conflicts with existing PHP 5.4 applications.
+It uses Apache 2.4 with PHP-FPM to avoid conflicts with existing 
+PHP 5.4 applications.  This also allows running Apache with a 
+multi-threaded MPM while using mod_php a multi-threaded MPM is 
+not recommended.
 
 The package has been built following official Nextcloud documentation and
 guidelines about strong directory permissions. See: https://docs.nextcloud.org/
@@ -13,6 +46,24 @@ After the installation, the administrator should take care of the following:
 * check Apache configuration and restart the httpd daemon
 * if needed, install and configure MariaDB/MySQL database
 * configure Nextcloud following the official documentation
+
+
+Building RPM
+------------
+
+Before building the RPM, you should make sure that rpm-build and
+rpmdevtools packages are installed.  This can be done by running:
+
+  yum -y install rpm-build rpmdevtools
+
+Then download the required source files by running:
+
+  spectool -g -R nextcloud.spec
+
+And finally building the nextcloud RPM by running:
+
+  rpmbuild -bb nextcloud.spec
+
 
 Dependencies
 ------------
@@ -25,18 +76,29 @@ The following dependencies are installed:
 * PHP packages for builtin apps (php-ldap)
 * PHP packages for MariaDB/MySQL connection
 
-You need to enable EPEL repository.
+You need to enable EPEL and SCL repositories.
 
-The administrator can enable extra features installing following RPMs (from centos-sclo-sclo repository):
+On CentOS this can be done by running:
 
-* sclo-php72-php-smbclient
-* rh-php72-php-imap
+  yum -y install epel-release centos-release-scl
+ 
+On Red Hat Enterprise Linux run:
+
+  yum -y install epel-release
+  yum-config-manager --enable rhel-server-rhscl-7-rpms
+
+The administrator can enable extra features installing following RPMs 
+(from centos-sclo-sclo repository):
+
+ * sclo-php72-php-smbclient
+ * sclo-php72-php-imap
+
 
 SELinux
 -------
 
-It's all on your own, please follow official documentation if you have SELinux enabled
-(which is the default on CentOS 7).
+It's all on your own, please follow official documentation if you have SELinux enabled (which is the default on CentOS 7).
+
 
 Alternatives RPMs
 -----------------
@@ -44,3 +106,4 @@ Alternatives RPMs
 If PHP-FPM doesn't fit your environment, please see also @mbevc1 packages:
 
 https://github.com/mbevc1/nextcloud
+
