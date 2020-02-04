@@ -1,0 +1,8 @@
+Package: nextcloud
+Version: 12.0.3
+Section: misc
+Priority: optional
+Architecture: amd64
+Depends: nextcloud-apache | nextcloud-nginx
+Maintainer: to be defined
+Description: to be defined

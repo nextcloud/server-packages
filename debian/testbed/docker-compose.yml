@@ -1,0 +1,44 @@
+version: '3.2'
+
+services:
+   nextcloud-apache:
+      build: 
+         context: nextcloud-apache
+      ports:
+        - target: 80
+          published: 80
+          protocol: tcp
+          mode: host
+      environment:
+         MYSQL_DATABASE_FILE: /run/secrets/mysql_db_name
+         MYSQL_USER_FILE: /run/secrets/mysql_user
+         MYSQL_PASSWORD_FILE: /run/secrets/mysql_password   
+         MYSQL_HOST: nextclouddb
+      secrets:
+         - mysql_password 
+         - mysql_user  
+         - mysql_db_name
+   nextclouddb:
+      environment:
+         MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+         MYSQL_DATABASE_FILE: /run/secrets/mysql_db_name
+         MYSQL_USER_FILE: /run/secrets/mysql_user
+         MYSQL_PASSWORD_FILE: /run/secrets/mysql_password   
+      secrets:
+         - mysql_root_password
+         - mysql_password
+         - mysql_user
+         - mysql_db_name
+      build: 
+         context: nextclouddb
+      expose:
+        - "3306"
+secrets:
+  mysql_root_password:
+    file: secrets/mysql_root_password.txt
+  mysql_password:
+    file: secrets/mysql_password.txt
+  mysql_user:
+    file: secrets/mysql_user.txt 
+  mysql_db_name:
+    file: secrets/mysql_db_name.txt          
