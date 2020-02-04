@@ -4,14 +4,13 @@ Nextcloud
 
 NextCloud 16 End of Life Notice
 -------------------------------
-NextCloud 16 is End of Life as of April 2020
-
-There will no longer be security or maintenance fixes provided.
+NextCloud 16 is End of Life as of April 2020.  There will no longer be security or maintenance fixes provided.
 
 It is important to plan an upgrade schedule to NextCloud version 17
 accordingly.
 
 NextCloud does not support skipping major versions when upgrading.  
+
 To keep the database schema current, it is important to run the 
 upgrade (such as through the OCC CLI) for each major version.
 
