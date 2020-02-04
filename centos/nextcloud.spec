@@ -13,7 +13,7 @@
 
 Summary: Nextcloud package
 Name: nextcloud
-Version: 16.0.7
+Version: 16.0.8
 Release: 1%{?dist}
 License: GPL
 Source: https://download.nextcloud.com/server/releases/nextcloud-%{version}.tar.bz2
@@ -97,11 +97,11 @@ cat << EOF
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 NextCloud v16 End of Life Notice
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-This NextCloud version is stated End of Life as of April 2020
+This NextCloud version is stated as End of Life as of April 2020
 
 There will no longer be security or maintenance fixes provided.
 
-It is important to plan an upgrade schedule to NextCloud version 16
+It is important to plan an upgrade schedule to NextCloud version 17
 accordingly.
 
 NextCloud does not support skipping major versions.  To keep the
@@ -162,6 +162,9 @@ fi
 
 
 %changelog
+* Mon Feb 3 2020 B Galliart <ben@steadfast.net> - 16.0.8-1
+- Update to release 16.0.8
+
 * Wed Jan 22 2020 B Galliart <ben@steadfast.net> - 16.0.7-1
 - Update to release 16.0.7
 
